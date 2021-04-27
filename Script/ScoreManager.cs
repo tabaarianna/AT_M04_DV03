@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : MonoBehaviour 
 {
     public static int playerScore;
 
-    public int PlayersScore
+    public int PlayersScore 
     {
         get
         {
             return playerScore;
         }
     }
-    public void SetScore(int incomingScore)
+	public void SetScore(int incomingScore)
     {
         playerScore += incomingScore;
         if (GameObject.Find("score"))

@@ -10,8 +10,4 @@ public class TitleComponent : MonoBehaviour
       SceneManager.LoadScene("shop");
     }
   }
-  void Start()
-  {
-    GameManager.playerLives = 3;
-  }
 }

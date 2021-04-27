@@ -40,24 +40,29 @@ public class GameManager : MonoBehaviour
 	{
 		switch (sceneNumber)
 		{
-			case 3 : case 4 :case 5: case 6:
+			case 3 : case 4 :
 			{
 				LightSetup();
-				CameraSetup();
+				CameraSetup(0);
+				break;
+			}
+			case 5:
+			{
+				CameraSetup(150);
 				break;
 			}
 		}
 	}
 
-    void CameraSetup()
+    void CameraSetup(float camSpeed)
     {
 		GameObject gameCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
-        //Camera Transform
+		gameCamera.GetComponent<CameraMovement>().CamSpeed = camSpeed;
+        
         gameCamera.transform.position = new Vector3(0,0,-300);
         gameCamera.transform.eulerAngles = new Vector3(0,0,0);
 		 
-		//Camera Properties
+		
         gameCamera.GetComponent<Camera>().clearFlags = CameraClearFlags.SolidColor;
         gameCamera.GetComponent<Camera>().backgroundColor = new Color32(0,0,0,255);
 	}
@@ -71,7 +76,7 @@ public class GameManager : MonoBehaviour
 	
 	 public void LifeLost()
 	{
-		//lose life
+		
 		if (playerLives >= 1)
 		{
 			playerLives--;
@@ -98,12 +103,12 @@ public class GameManager : MonoBehaviour
 					life.transform.SetParent(lives.transform);
 				}	
 			}
-			//set visual lives
+			
 			for (int i = 0; i < lives.transform.childCount; i++)
 			{
 				lives.transform.GetChild(i).localScale = new Vector3(1,1,1);
 			}
-			//remove visual lives
+			
 			for (int i = 0; i < (lives.transform.childCount - players); i++)
 			{
 				lives.transform.GetChild(lives.transform.childCount - i -1).localScale = Vector3.zero;
